@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=CppTemplate2024_Menu_For_Assignment4
+PROJECTNAME=Menu_For_Assignment4
 
 # Active Configuration
 DEFAULTCONF=Debug
