@@ -116,6 +116,14 @@ int main(int argc, char** argv) {
     
     cout<<endl<<endl;
     
+    // Print original hands with matches before the first turn starts
+    cout << "Player 1's original hand: " << p1Hand << endl;
+    cout << "Player 2's original hand: " << p2Hand << endl;
+    
+    // Pause for player 1 to view their hand and identify matches
+    cout << "Press Enter to continue...";
+    cin.ignore();  // Wait for Enter key
+
     
     
 //  Prints out the game play     
@@ -125,6 +133,53 @@ int main(int argc, char** argv) {
     string p2HndMtch = ""; // String that holds the matching cards for p2Hand
     int matchCountP1 = 0;  // Counter for matches for player 1
     int matchCountP2 = 0;  // Counter for matches for player 2
+    
+    
+
+        // Identify and display matches in player 1's hand
+    cout << "Player 1, identify matches in your hand:" << endl;
+    for (int i = 0; i < p1Hand.length(); ++i) {
+        char card = p1Hand[i];
+        size_t pos = p1Hand.find(card, i + 1); // Start searching for matches after the current card
+        if (pos != string::npos) {
+            p1HndMtch += card;
+            matchCountP1++;
+
+            // Remove the matched card from player 1's hand
+            p1Hand.erase(pos, 1);
+            // Remove the current card as well to avoid duplicate matches
+            p1Hand.erase(i, 1);
+            i--; // Adjust index after erasing a character
+        }
+    }
+    // Display the matching cards
+        cout << "Player 1's matching cards: " << p1HndMtch << endl <<endl;
+
+    // Pause for player 2 to view their hand and identify matches
+    cout << "Press Enter to continue...";
+    cin.ignore();  // Wait for Enter key
+
+    // Identify and display matches in player 2's hand
+    cout << "Player 2, identify matches in your hand:" << endl;
+    for (int i = 0; i < p2Hand.length(); ++i) {
+        char card = p2Hand[i];
+        size_t pos = p2Hand.find(card, i + 1); // Start searching for matches after the current card
+        if (pos != string::npos) {
+            p2HndMtch += card;
+            matchCountP2++;
+
+            // Remove the matched card from player 2's hand
+            p2Hand.erase(pos, 1);
+            // Remove the current card as well to avoid duplicate matches
+            p2Hand.erase(i, 1);
+            i--; // Adjust index after erasing a character
+        }
+    }
+    cout << "Player 2's matching cards: " << p2HndMtch << endl <<endl;
+
+    
+
+
    
     cout << "Game starts here:" << endl;
     // Game loop
@@ -264,7 +319,7 @@ int main(int argc, char** argv) {
 //I am running into a bug where I can't add the matches to the match pile 
 //I think it is because I am adding to the original hand first.
 //what if the card is added to the original p1hand first and then moved into 
-//the matching pile. I have to figure out a way to identify when to crads match 
+//the matching pile. I have to figure out a way to identify when to cards match 
 //        and then move it into the matching pile.
 //I also realized that I add logic before the game loop to check for initial matches 
 //in p1Hand and p2Hand. If matches are found, move them to the corresponding matching 
